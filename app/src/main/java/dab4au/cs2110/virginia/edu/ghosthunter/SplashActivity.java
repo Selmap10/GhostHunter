@@ -1,14 +1,14 @@
 package dab4au.cs2110.virginia.edu.ghosthunter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +19,11 @@ public class SplashActivity extends Activity {
             public void run() {
                 try {
                     sleep(4000);
-                    Intent menuIntent = new Intent("menuScreen");
+                    Log.w("afterSleep","Good to go");
+                    Intent menuIntent = new Intent("dab4au.cs2110.virginia.edu.ghosthunter.MENU");
+                    Log.w("afterIntent","Good to go");
                     startActivity(menuIntent);
+                    Log.w("afterStart","Good to go");
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
@@ -32,8 +35,12 @@ public class SplashActivity extends Activity {
         splashTimer.start();
     }
 
-    protected void onPause() {
-        super.onPause();
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_splash, menu);
+        return true;
     }
 
     @Override
@@ -50,9 +57,4 @@ public class SplashActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    }
-
-
-
-
+}
